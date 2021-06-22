@@ -27,6 +27,7 @@ import joblib,os
 
 # Data dependencies
 import pandas as pd
+import sklearn
 
 # Vectorizer
 news_vectorizer = open("resources/vect.pkl","rb")
