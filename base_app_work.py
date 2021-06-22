@@ -33,7 +33,7 @@ news_vectorizer = open("vect.pkl","rb")
 tweet_cv = joblib.load(news_vectorizer) # loading your vectorizer from the pkl file
 
 # Load your raw data
-raw = pd.read_csv("train.csv")
+raw = pd.read_csv("resources/train.csv")
 
 # The main function where we will build the actual app
 def main():
@@ -78,16 +78,12 @@ def main():
 			# more human interpretable.
 			st.success("Text Categorized as: {}".format(prediction))
 			
-		if st.button("Classify with alternative model"):
-			
-			vect_tweet = tweet_cv.transform([tweet_text]).toarray()
-			
+		elif st.button("Classify with alternative model"):
+            vect_tweet = tweet_cv.transform([tweet_text]).toarray()
 			predictor = joblib.load(open(os.path.join("NaiveBayesClassification.pkl"),"rb"))
+            prediction = predictor.predict(vect_tweet)
 
-        	prediction = predictor.predict(vect_tweet)
-
-        
-	st.success("Text Categorized as: {}".format(prediction))
+            st.success("Text Categorized as: {}".format(prediction))
 								   
 # Required to let Streamlit instantiate our web app.  
 if __name__ == '__main__':
