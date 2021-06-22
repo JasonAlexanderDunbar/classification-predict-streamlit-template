@@ -81,7 +81,7 @@ def main():
 		if st.button("Classify with alternative model"):
 			vect_tweet = tweet_cv.transform([tweet_text]).toarray()
 			predictor = joblib.load(open(os.path.join("NaiveBayesClassification.pkl"),"rb"))
-        		prediction = predictor.predict(vect_tweet)
+        		
 
         		st.success("Text Categorized as: {}".format(prediction))
 								   
