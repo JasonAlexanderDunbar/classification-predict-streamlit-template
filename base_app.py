@@ -83,9 +83,11 @@ def main():
 			vect_tweet = tweet_cv.transform([tweet_text]).toarray()
 			
 			predictor = joblib.load(open(os.path.join("NaiveBayesClassification.pkl"),"rb"))
-        prediction = predictor.predict(vect_tweet)
-								   
-		st.success("Text Categorized as: {}".format(prediction))
+
+        	prediction = predictor.predict(vect_tweet)
+
+        
+	st.success("Text Categorized as: {}".format(prediction))
 								   
 # Required to let Streamlit instantiate our web app.  
 if __name__ == '__main__':
