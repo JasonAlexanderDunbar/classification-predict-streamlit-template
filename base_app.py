@@ -82,7 +82,7 @@ def main():
 			
 			vect_tweet = tweet_cv.transform([tweet_text]).toarray()
 			
-			predictor = jopblib.load(open(os.path.join("NaiveBayesClassification.pkl),"rb"))
+			predictor = joblib.load(open(os.path.join("NaiveBayesClassification.pkl"),"rb"))
             prediction = predictor.predict(vect_tweet)
 								   
 		    st.success("Text Categorized as: {}".format(prediction))
