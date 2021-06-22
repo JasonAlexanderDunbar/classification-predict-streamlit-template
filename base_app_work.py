@@ -29,7 +29,7 @@ import joblib,os
 import pandas as pd
 
 # Vectorizer
-news_vectorizer = open("vect.pkl","rb")
+news_vectorizer = open("resources/vect.pkl","rb")
 tweet_cv = joblib.load(news_vectorizer) # loading your vectorizer from the pkl file
 
 # Load your raw data
@@ -70,12 +70,19 @@ def main():
 			vect_text = tweet_cv.transform([tweet_text]).toarray()
 			# Load your .pkl file with the model of your choice + make predictions
 			# Try loading in multiple models to give the user a choice
-			predictor = joblib.load(open(os.path.join("LogisticRegression.pkl"),"rb"))
+			predictor = joblib.load(open(os.path.join("resources/LogisticRegression.pkl"),"rb"))
 			prediction = predictor.predict(vect_text)
 
 			# When model has successfully run, will print prediction
 			# You can use a dictionary or similar structure to make this output
 			# more human interpretable.
+			st.success("Text Categorized as: {}".format(prediction))
+
+		if st.button("Classify tweet with alternative model"):
+			vect_tweet_nb = tweet_cv.transform([tweet_text]).toarray()
+			predictor_nb = joblib.load(open(os.path.join("resources/NaiveBayesClassification.pkl"), "rb"))
+			prediction_nb = predictor_nb.predict(vect_tweet_nb)
+
 			st.success("Text Categorized as: {}".format(prediction))
 								   
 # Required to let Streamlit instantiate our web app.  
