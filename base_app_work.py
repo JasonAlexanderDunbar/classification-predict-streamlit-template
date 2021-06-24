@@ -27,7 +27,6 @@ import joblib,os
 
 # Data dependencies
 import pandas as pd
-import sklearn
 
 # Vectorizer
 news_vectorizer = open("resources/vect.pkl","rb")
@@ -35,6 +34,10 @@ tweet_cv = joblib.load(news_vectorizer) # loading your vectorizer from the pkl f
 
 # Load your raw data
 raw = pd.read_csv("resources/train.csv")
+
+# Add an image to the app interface
+
+st.image("resources/imgs/earth-blue-planet-globe-planet-41953.jpeg")
 
 # The main function where we will build the actual app
 def main():
